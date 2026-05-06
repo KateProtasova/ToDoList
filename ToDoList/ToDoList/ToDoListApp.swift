@@ -19,7 +19,7 @@ struct ToDoListApp: App {
 }
 
 struct RootView: View {
-    let appRouter: AppRouter
+    @Bindable var appRouter: AppRouter
 
     @State private var presenter: TaskListPresenter
 
@@ -31,7 +31,7 @@ struct RootView: View {
     }
 
     var body: some View {
-        NavigationStack(path: Bindable(appRouter).path) {
+        NavigationStack(path: $appRouter.path) {
             TaskListView(presenter: presenter)
                 .navigationDestination(for: Route.self) { route in
                     detailView(for: route)

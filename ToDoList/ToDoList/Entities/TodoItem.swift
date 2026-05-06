@@ -9,6 +9,12 @@ struct TodoItem: Identifiable, Hashable, Sendable {
 }
 
 extension TodoItem {
+    var formattedDate: String {
+        let f = DateFormatter()
+        f.dateFormat = "dd/MM/yy"
+        return f.string(from: createdAt)
+    }
+
     var shareText: String {
         var text = title
         if !taskDescription.isEmpty {

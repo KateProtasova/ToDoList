@@ -11,24 +11,28 @@ struct TaskDetailView: View {
             VStack(alignment: .leading, spacing: 8) {
                 TextField("Название задачи", text: $presenter.title, axis: .vertical)
                     .font(.detailTitle)
+                    .foregroundStyle(Color.appPrimary)
                     .focused($focusedField, equals: .title)
                     .submitLabel(.next)
                     .onSubmit { focusedField = .description }
 
                 Text(presenter.formattedDate)
                     .font(.taskBody)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Color.appSecondary)
                     .padding(.bottom, 4)
 
                 TextField("Описание", text: $presenter.taskDescription, axis: .vertical)
                     .font(.body)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Color.appSecondary)
                     .focused($focusedField, equals: .description)
             }
             .padding(.horizontal, 20)
             .padding(.top, 8)
         }
+        .background(Color.appBackground)
+        .scrollContentBackground(.hidden)
         .navigationBarBackButtonHidden(true)
+        .toolbarColorScheme(.dark, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
